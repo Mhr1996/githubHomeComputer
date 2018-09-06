@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>二叉树算法</title>
+</head>
+<body>
+	<script>
+		var arr=[2,5,23,67,34,6,43,6,345,786,34,5,756,345,56,534,78,45,34,67];
+
+		function binaryTree(){
+			var Node=function(key){
+				this.key=key;
+				this.left=null;
+				this.right=null;
+			}
+
+			var root=null;
+			var insertNode=function(node,children){
+				if (children.key>node.key) {
+					if (node.right===null) {
+						node.right=children;
+					}else{
+						insertNode(node.right,children)
+					}
+				}else if(children.key<node.key){
+					if (node.left===null) {
+						node.left=children;
+					}else{
+						insertNode(node.left,children)
+					}
+				}
+			}
+
+			this.insert=function(key){
+				var node =new Node(key);
+				if (root===null) {
+					root=node ; 
+				}else{
+					insertNode(root,node);
+				}
+				return root;
+			}
+		}
+
+		var ar_=new binaryTree();
+		arr.forEach(function(key){
+			console.log(ar_.insert(key))
+			
+		})
+
+	</script>
+</body>
+</html>
