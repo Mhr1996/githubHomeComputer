@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>8-5 使用Canvas交互和isPointInPath(08:05)</title>
+	<style>
+		#canvas{
+			display: block;
+			margin: 0 auto;
+			border:1px solid #523456;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas">
+		浏览器不支持canvas，请更新到最新版本！
+	</canvas>
+	<script>
+		var canvas=document.getElementById("canvas");
+		var balls=[];
+		canvas.width=700;
+		canvas.height=700;
+
+		var c=canvas.getContext("2d");
+
+		+function(){
+			for (var i = 0; i < 12; i++) {
+				var ball={
+					x:Math.random()*canvas.width,
+					y:Math.random()*canvas.height,
+					r:Math.random()*5+10
+				}
+				balls[balls.length]=ball;
+				console.log(balls)
+			}
+			draw();
+			//canvas.addEventListener("mouseup" , detect);//鼠标按下后松开的事件
+			canvas.addEventListener("mousemove" , detect);//鼠标移动时触发的事件
+		}()
+
+		function draw(x , y){
+			for (var i = 0; i < balls.length; i++) {
+				c.beginPath();
+				c.arc(balls[i].x,balls[i].y,balls[i].r,0,2*Math.PI);
+				if (c.isPointInPath(x,y)) {
+					c.fillStyle="red";
+				}else{
+					c.fillStyle="#452333";
+				}
+				c.closePath();
+				c.fill();
+			}
+			
+		}
+
+		function detect(e){
+			//获取在画布上用户操作的坐标
+			//它是通过计算用户在整个页面的操作坐标与canvas在页面的左上边距进行计算的
+			var x=e.clientX-canvas.getBoundingClientRect().left;
+			var y=e.clientY-canvas.getBoundingClientRect().top;
+
+			draw(x , y);
+			/*
+				按下事件
+			 for (var i = 0; i < balls.length; i++) {
+				c.beginPath();
+				c.arc(balls[i].x , balls[i].y , balls[i].r , 0 , 2*Math.PI);
+
+				//如果指定的点位于当前路径中， isPointInPath() 方法返回 true
+				if (c.isPointInPath(x,y)) {
+					c.fillStyle="red";
+					c.fill();
+				}
+			}*/
+		}
+	</script>
+</body>
+</html>

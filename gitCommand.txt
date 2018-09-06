@@ -1,0 +1,14 @@
+﻿第一步：是使用 git add 把文件添加进去，实际上就是把文件添加到暂存区。
+
+第二步：使用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支上。
+
+git add 文件名 提交到本地暂存区
+git diff 文件名 查看更新了什么
+git commit -m '备注' 实际上就是把暂存区的所有内容提交到当前分支
+git reset  -–hard HEAD^ 回到上一版本
+git reset  -–hard HEAD~100 回到上次第100个版本
+git reflog 获取每次提交的版本号
+git reset  -–hard 6fcfc89 回到最新版本
+:wq 退出即可
+
+测试语句
