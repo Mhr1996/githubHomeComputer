@@ -11,6 +11,9 @@ git reflog 获取每次提交的版本号
 git reset  -–hard 6fcfc89 回到最新版本
 :wq 退出即可
 
+查看远端地址 git remote –v 
+查看配置 git config --list
+
 git remote add origin git@github.com:Mhr1996/githubHomeComputer.git   # 添加远程仓库地址，保存在origin变量中
 
 git push -u origin master 按照前一条命令中origin给定的github地址推送到github仓库的master分支
