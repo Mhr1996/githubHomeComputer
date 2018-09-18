@@ -7,7 +7,7 @@ class CardTest extends React.Component{
 			<div>
 				<p>{name}</p>
 				{item.map((value,index)=>
-					<span key={index}>{value},</span>
+					<span class="btn btn-success" key={index}>{value},</span>
 				)}
 			</div>
 		)
