@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.LC{
+			border: 1px solid #a5a2a2;
+		    width: 12px;
+		    height: 12px;
+		    display: block;
+		    float: left;
+		    margin-right: 20px;
+		    border-radius: 50%;
+		    position: relative;
+		}
+		#R1, #R2{
+			display: none;
+		}
+		input[name=news]:checked+label{
+			border: 1px solid #03a9f4;
+		}
+		input[name=news]:checked+label:after{
+			content: '';
+			position: absolute;
+			width: 6px;
+			height: 6px;
+			background-color: #FFF;
+			top: 3px;
+			left: 3px;
+			border-radius: 50%;
+		}
+		input[name=news]:checked+label:before{
+			content: '';
+			position: absolute;
+			width: 12px;
+		    height: 12px;
+			background-color: #03a9f4;
+			top: 0;
+			left: 0;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+<div>
+	<ul>
+		<li><input type="radio" id="R1" name="news" value="我是第一个"><label for="R1" class="LC"></label></li>
+		<li><input type="radio" id="R2" name="news" value="我是第二个"><label for="R2" class="LC"></label></li>
+	</ul>
+</div>
+<!-- <script  src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+<script>
+	$("input[name=news]").on("click",function(){
+		console.log($("input[name=news]:checked").val());
+	})
+	
+</script> -->
+</body>
+</html>

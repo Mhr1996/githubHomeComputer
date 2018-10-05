@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.LC{
+			border: 1px solid #a5a2a2;
+		    width: 12px;
+		    height: 12px;
+		    display: block;
+		    float: left;
+		    margin-right: 20px;
+		    border-radius: 50%;
+		    position: relative;
+		}
+		#R1, #R2{
+			display: none;
+		}
+		.LC.active{
+			background-color: #03a9f4;
+			border-color: #03a9f4;
+		}
+		.LC.active:after{
+			content: '';
+			position: absolute;
+			width: 6px;
+			height: 6px;
+			background-color: #FFF;
+			top: 3px;
+			left: 3px;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<label for="R1" class="LC"><input type="radio" id="R1" name="news"></label>
+	<label for="R2" class="LC"><input type="radio" id="R2" name="news"></label>
+	<script  src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+	<script>
+		$("input[name=news]").on("click",function(){
+			if(!$(this).closest(".LC").hasClass("active")){
+				$(".LC").removeClass("active");
+				$(this).closest(".LC").addClass("active");
+			}
+		})
+	</script>
+</body>
+</html>
