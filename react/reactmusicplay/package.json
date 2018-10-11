@@ -4,7 +4,8 @@
   "description": "1.根据react官网安装三步骤来创建初始文件夹",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --open --color"
   },
   "author": "",
   "license": "ISC",
@@ -28,11 +29,14 @@
     "html-webpack-plugin": "^3.2.0",
     "json-loader": "^0.5.7",
     "less": "^3.8.1",
-    "sass-loader": "^7.1.0",
     "less-loader": "^4.1.0",
+    "mini-css-extract-plugin": "^0.4.4",
+    "node-sass": "^4.9.3",
+    "react-hot-loader": "^4.3.11",
+    "sass-loader": "^7.1.0",
     "style-loader": "^0.22.1",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.6"
+    "webpack-dev-server": "^3.1.9"
   }
 }

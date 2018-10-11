@@ -1,4 +1,19 @@
-var react=require('react');
+import React from 'react';
+import ReactDOM from 'react-dom';
 import './src/sass/index.css';
 
-console.log(react.version+"9999");
+class Dv extends React.Component{
+	render(){
+		return(
+			<div>
+				<h3>hello reactmusicplay</h3>
+			</div>
+		)
+	}
+}
+
+
+ReactDOM.render(
+	<Dv />, 
+	document.getElementById("root")
+)
