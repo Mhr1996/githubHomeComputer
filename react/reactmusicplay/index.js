@@ -1,19 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactHot from 'react-hot-loader';
 import './src/sass/index.css';
-
-class Dv extends React.Component{
-	render(){
-		return(
-			<div>
-				<h3>hello reactmusicplay</h3>
-			</div>
-		)
-	}
-}
-
+import Timer from './src/fuben.js';
 
 ReactDOM.render(
-	<Dv />, 
+	<Timer />, 
 	document.getElementById("root")
 )
+
+if (module.hot) {
+	module.hot.accept('./src/fuben.js', function() {
+		console.log("read me")
+	})
+}
