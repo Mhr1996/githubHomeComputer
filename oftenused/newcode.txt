@@ -1,0 +1,4 @@
+var pf={p:{}, f:$("#form [name]") }
+for (var i =0; i <pf.f.length; i++) {
+    if (pf.f.eq(i).attr("name")!="myfiles") {pf.p[pf.f.eq(i).attr("name")]=pf.f.eq(i).val().trim();}
+}
