@@ -33,7 +33,13 @@ module.exports={
 		            	require.resolve('babel-preset-react'),
 		          	]
 			    }
-			}
+			},
+			{
+	　　　　　　test: /\.(png|jpg)$/,
+				use:[
+			        "file-loader?limit=5000&name=static/[hash:8].[name].[ext]"
+			    ]
+	　　　　}
 		]
 	},
 	plugins:[ //webpack 插件列表
