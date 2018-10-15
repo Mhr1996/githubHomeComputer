@@ -9,7 +9,7 @@ module.exports={
 		index:'./index.js'
 	},
 	output:{
-		publicPath: 'http://localhost:9999',
+		publicPath: 'http://localhost:9999/',
 		filename:"js/[name].js",//[hash:6] 加上随机数 热更新时会有问题
 	    path: path.resolve(__dirname, 'dist')
 	},

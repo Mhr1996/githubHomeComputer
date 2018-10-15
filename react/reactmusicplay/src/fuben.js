@@ -41,7 +41,7 @@ class Timer extends React.Component{
 		return(
 			<div>
 				{this.state.time}
-				<div onClick={this.stop}>2222ff2{this.state.status?"暂停1":"继续2"}</div>
+				<div onClick={this.stop}>{this.state.status?"暂停":"继续"}</div>
 			</div>
 		)
 	}
