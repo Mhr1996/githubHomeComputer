@@ -1,0 +1,78 @@
+body,html{font-size: 20px;margin:0px;}
+
+.progress{
+	margin-top: 20px;
+	width: 100%;
+	background-color: #000;
+	height: 3px;
+	cursor: pointer;
+	.progressBar{
+		background-color: red;
+		height: 3px;
+	}
+}
+
+.header {
+    height: 70px;
+    box-sizing: border-box;
+    background: #242424;
+    border-bottom: 1px solid #000;
+    margin-bottom: 30px;
+    .title{
+    	width: 1100px;
+    	margin: 0 auto;
+    	height: 70px;
+    }
+    .logo {
+	    float: left;
+	    width: 176px;
+	    height: 69px;
+	    background-position: 0 0;
+	    background: url(../../static/topbar.png) no-repeat;
+	}
+}
+
+.container{
+	width:1100px;
+	margin: 0 auto;
+}
+.leftSingInfo{
+	float: left;
+    width: 70%;
+	p{
+		margin: 0px;
+	}
+	.listTitle{
+		color: #d84949;
+	    font-size: 16px;
+	    cursor:pointer;
+	}
+	.name{
+		margin: 10px 0; 
+		font-size: 40px;
+	}
+	.singer{
+		margin-bottom: 20px;
+	}
+	.children_1{
+		font-size: 14px;
+		color: #ccc;
+		.second{
+			margin-right: 10px;
+		}
+	}
+	.children_2{
+		div{
+			float:left;
+			margin-right: 10px;
+
+		}
+	}
+}
+.imgInfo{
+	    height: 184px;
+	    text-align: center;
+	img{
+		height: 100%;
+	}
+}

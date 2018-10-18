@@ -8,9 +8,10 @@ class Timer extends React.Component{
 	}
 	render(){
 		return(
-			<div>
-				<img src={require('../static/wy.png')}/>
-				<h1 style={{fontSize:'18px'}}>React music player</h1>
+			<div className="header">
+			 	<div className="title">
+					<div className="logo"></div>
+			 	</div>
 			</div>
 		)
 	}

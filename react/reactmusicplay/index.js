@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactHot from 'react-hot-loader';
-import './src/sass/index.css';
+import './src/sass/index.scss';
 import Root from './src/root.js';
 
 ReactDOM.render(
