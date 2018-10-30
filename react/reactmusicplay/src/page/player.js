@@ -13,6 +13,7 @@ class Player extends React.Component{
 		}
 
 		this.modifyProgress=this.modifyProgress.bind(this);
+		this.imgSrc=this.imgSrc.bind(this);
 	}
 	componentDidMount(){//第一次渲染完成后触发 客户端
 		$("#player").bind($.jPlayer.event.timeupdate, (e) => {// 当当前事件被改变时触发。（重放的时候两个事件相隔250ms）
@@ -29,6 +30,8 @@ class Player extends React.Component{
 	modifyProgress(second){
 		$("#player").jPlayer('play', musicTime * second);//总长度 * 跳转的百分比
 	}
+	imgSrc(s){
+	}
 	render(){
 		return(
 			<div>
@@ -40,7 +43,9 @@ class Player extends React.Component{
 					<div className="children_2"><div className="left">←</div><div className="playBtn">播放</div><div className="right">→</div></div>
 				</div>
 				<div className="imgInfo">
-					{/*<img src={require(`${this.props.MustiList.cover}`)} alt="歌名" />*/}
+					{/*<img src={`${this.props.MustiList.cover}`} alt={this.props.MustiList.title}/>*/}
+					<img src={require('../../static/6672936069046297.jpg')} alt="歌名" />
+					{/*<img src={this.imgSrc(this.props.MustiList.cover)} alt="歌名" />*/}
 				</div>
 				<Progress progress={this.state.progress} childrenProgress={this.modifyProgress}/>
 			</div>
