@@ -8,37 +8,39 @@ class Player extends React.Component{
 		super(props);
 
 		this.state={
-			progress:'-'
+			progress:'-',
+			MustiList:props.MustiList
 		}
 
 		this.modifyProgress=this.modifyProgress.bind(this);
 	}
-	componentDidMount(){
-		$("#player").bind($.jPlayer.event.timeupdate, (e) => {
-			musicTime=e.jPlayer.status.duration;
+	componentDidMount(){//第一次渲染完成后触发 客户端
+		$("#player").bind($.jPlayer.event.timeupdate, (e) => {// 当当前事件被改变时触发。（重放的时候两个事件相隔250ms）
+			musicTime=e.jPlayer.status.duration;//Number : The duration of the media 翻译为：媒体持续时间
 			this.setState({
-				progress:e.jPlayer.status.currentPercentAbsolute
+				progress:e.jPlayer.status.currentPercentAbsolute//当前时间为百分之一的持续时间
 			});
 		})
+
 	}
-	componentWillUnMount(){
+	componentWillUnMount(){ //在组件从DOM中移除时调用
 		$("#player").unbind($.jPlayer.event.timeupdate);
 	}
 	modifyProgress(second){
-		$("#player").jPlayer('play', musicTime * second);
+		$("#player").jPlayer('play', musicTime * second);//总长度 * 跳转的百分比
 	}
 	render(){
 		return(
 			<div>
 				<div className="leftSingInfo">
 					<p className="listTitle">音乐列表</p>
-					<p className="name">音乐名称</p>
-					<p className="singer">歌手</p>
+					<p className="name">{this.props.MustiList.title}</p>
+					<p className="singer">{this.props.MustiList.artist}</p>
 					<div className="children_1"><span className="second">2:00</span><span className="vol">音量</span></div>
 					<div className="children_2"><div className="left">←</div><div className="playBtn">播放</div><div className="right">→</div></div>
 				</div>
 				<div className="imgInfo">
-					<img src={require('../../static/1.jpg')} alt="歌名" />
+					{/*<img src={require(`${this.props.MustiList.cover}`)} alt="歌名" />*/}
 				</div>
 				<Progress progress={this.state.progress} childrenProgress={this.modifyProgress}/>
 			</div>
