@@ -4,11 +4,12 @@ body,html{font-size: 20px;margin:0px;}
 	margin-top: 20px;
 	width: 100%;
 	background-color: #000;
-	height: 3px;
+	height: 5px;
 	cursor: pointer;
+	vertical-align: bottom;
 	.progressBar{
 		background-color: red;
-		height: 3px;
+		height: 5px;
 	}
 }
 
@@ -51,21 +52,22 @@ body,html{font-size: 20px;margin:0px;}
 		margin: 10px 0; 
 		font-size: 40px;
 	}
-	.singer{
-		margin-bottom: 20px;
-	}
 	.children_1{
 		font-size: 14px;
 		color: #ccc;
 		.second{
 			margin-right: 10px;
 		}
+		.vol{
+			margin-right: 10px;
+		}
 	}
 	.children_2{
+		margin-top: 10px;
+    	overflow: hidden;
 		div{
 			float:left;
 			margin-right: 10px;
-
 		}
 	}
 }
@@ -74,5 +76,28 @@ body,html{font-size: 20px;margin:0px;}
 	    text-align: center;
 	img{
 		height: 100%;
+	}
+}
+.musicList{
+	list-style: none;
+	border: 1px solid #f7f7f7;
+	li{
+		color: #333;
+		font-size: 14px;
+		height: 30px;
+		line-height: 30px;
+		padding-left: 30px;
+		background:url('../../static/play.png') no-repeat;
+		background-size: 20px;
+	    background-position: 7px 5px;
+	    padding-left: 40px;
+	}
+	li.active{
+		background:url('../../static/play_.png') no-repeat;
+		background-size: 20px;
+	    background-position: 7px 5px;
+	}
+	li:nth-child(2n){
+		background-color: #f7f7f7;
 	}
 }
