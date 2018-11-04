@@ -5,6 +5,11 @@ import MusicList from './page/musicList';
 import jPlayer  from 'jplayer';
 import MusicJson from '../static/musicJsonList';
 
+import { render } from 'react-dom';
+import { Switch, Route, Router } from 'react-router';
+import createBrowserHistory from 'history/createBrowserHistory';
+let history = createBrowserHistory();
+
 class Root extends React.Component{
 	constructor(props){
 		super(props);
@@ -27,14 +32,22 @@ class Root extends React.Component{
 	}
 	render(){
 		return(
-			<div>
-				<Header /> {/*头部样式*/}
-				<div className="container">
-					<MusicList MusicGetList={this.state.MusicListItem} atOnce={this.state.MusicJson.id-1}/>
-					<Player MusicJson={this.state.MusicJson}/>
+			<Router history={history}>
+				<div>
 					<div id="player"></div>
+					<div className="container">
+						<Header />
+						<Switch>
+							<Route exact path='/' render={() => (
+								<Player MusicJson={this.state.MusicJson}></Player>
+							)}></Route>
+							<Route exact path='/list' render={() => (
+								<MusicList  MusicGetList={this.state.MusicListItem} atOnce={this.state.MusicJson.id-1}></MusicList>
+							)}></Route>
+						</Switch>
+					</div>
 				</div>
-			</div>
+			</Router>
 		)
 	}
 }

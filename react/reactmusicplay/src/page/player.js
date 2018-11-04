@@ -1,6 +1,7 @@
 import React from 'react';
 import jPlayer  from 'jplayer';
-import Progress from '../progress';
+import Progress from '../progress.js';
+import { Link } from 'react-router-dom'
 
 let musicTime=null;
 class Player extends React.Component{
@@ -52,7 +53,7 @@ class Player extends React.Component{
 		return(
 			<div>
 				<div className="leftSingInfo">
-					<p className="listTitle">音乐列表</p>
+					<Link to='/list' className="listTitle">音乐列表</Link>
 					<p className="name">{this.props.MusicJson.title}</p>
 					<p className="singer">{this.props.MusicJson.artist}</p>
 					<div className="children_1">
