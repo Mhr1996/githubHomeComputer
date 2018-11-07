@@ -8,6 +8,7 @@ import MusicJson from '../static/musicJsonList';
 import { render } from 'react-dom';
 import { Switch, Route, Router } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
+import Pubsub from 'pubsub-js';
 let history = createBrowserHistory();
 
 class Root extends React.Component{
@@ -19,16 +20,65 @@ class Root extends React.Component{
 			MusicListItem:MusicJson
 		}
 	}
+	Play(i){
+		$("#player").jPlayer('setMedia',{
+			mp3: MusicJson[i].file
+		}).jPlayer('play');
+
+		this.setState({
+			MusicJson:MusicJson[i]
+		})
+	}
+	playNext(a="next"){
+		let index=this.getMusic(this.state.MusicJson);
+		let newIndex=null;
+		let mL=this.state.MusicListItem.length;
+		console.log((index + 1) % mL);
+		console.log(index);
+		console.log(mL);
+		if (a === "next") {
+			newIndex=(index + 1) % mL;
+		}else{
+			newIndex=(index - 1 + mL) % mL;
+		}	
+		this.Play(newIndex);
+	}
+	getMusic(m){
+		return this.state.MusicListItem.indexOf(m);
+	}
 	componentDidMount(){//在第一次渲染后调用，只在客户端。
 		$("#player").jPlayer({
-			ready:function(){
-				$(this).jPlayer('setMedia',{
-					mp3: 'https://m10.music.126.net/20181017205644/278ca56e4938bae44fca54390c801ffb/ymusic/5d63/5150/0851/5f226aac018cafc2cb248f7d28fbd5b4.mp3'
-				}).jPlayer('play');
-			},
 			supplied:'mp3',//定义提供给jPlayer的格式。顺序表示优先级
 			wmode:'window'//允许设置Flash 的wmode。 有效的wmode值有: window, transparent, opaque, direct, gpu
 		});
+		this.Play(0);
+
+		$("#player").bind($.jPlayer.event.ended, (e)=>{
+			this.playNext();
+		})
+
+		Pubsub.subscribe('DEL_MUSIC',(msg , i)=>{
+			this.setState({
+				MusicListItem:MusicJson.splice(i, 1)
+			})
+		});
+		Pubsub.subscribe('PLAY_MUSIC',(msg , i)=>{
+			this.Play(i);
+		});
+
+		Pubsub.subscribe('PLAY_Prev',(msg)=>{
+			this.playNext("prev");
+		});
+		Pubsub.subscribe('PLAY_Next',(msg)=>{
+			this.playNext();
+		});
+	}
+	componentWillUnMount(){//组件将要卸载时调用，一些事件监听和定时器需要在此时清除。
+		Pubsub.unsubscribe('DEL_MUSIC');
+		Pubsub.unsubscribe('PLAY_MUSIC');
+		Pubsub.unsubscribe('PLAY_Prev');
+		Pubsub.unsubscribe('PLAY_Next');
+		$("#player").unbind($.jPlayer.event.ended);
 	}
 	render(){
 		return(

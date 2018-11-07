@@ -2,6 +2,7 @@ import React from 'react';
 import jPlayer  from 'jplayer';
 import Progress from '../progress.js';
 import { Link } from 'react-router-dom'
+import Pubsub from 'pubsub-js';
 
 let musicTime=null;
 class Player extends React.Component{
@@ -19,6 +20,12 @@ class Player extends React.Component{
 		this.modifyVolume=this.modifyVolume.bind(this);
 		this.btnFz=this.btnFz.bind(this);
 
+	}
+	playPrev(){
+		Pubsub.publish('PLAY_Prev');
+	}
+	playNext(){
+		Pubsub.publish('PLAY_Next');
 	}
 	componentDidMount(){//第一次渲染完成后触发 客户端
 		$("#player").bind($.jPlayer.event.timeupdate, (e) => {// 当当前事件被改变时触发。（重放的时候两个事件相隔250ms）
@@ -62,7 +69,7 @@ class Player extends React.Component{
 							<Progress progress={this.state.volume} childrenProgress={this.modifyVolume} barColor="#ccc"></Progress>
 						</div>
 					</div>
-					<div className="children_2"><div className="left">←</div><div className="playBtn" onClick={this.btnFz}>{this.state.playBtn?'暂停':'播放'}</div><div className="right">→</div></div>
+					<div className="children_2"><div className="left" onClick={this.playPrev}>←</div><div className="playBtn" onClick={this.btnFz}>{this.state.playBtn?'暂停':'播放'}</div><div className="right" onClick={this.playNext}>→</div></div>
 				</div>
 				<div className="imgInfo">
 					{/*<img src={require('../../static/6672936069046297.jpg')} alt="歌名" />*/}
