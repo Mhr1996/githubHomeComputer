@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<selectnum :price="10" @addup="totalnum"></selectnum>
+		<selectnum :price="30" @addup="totalnum"></selectnum>
+		<div>{{total}}</div>
+	</div>
+</body>
+<script>
+	Vue.component('selectnum',{
+		props:['price'],
+		data:function(){
+			return {
+				rate:this.price
+			}	
+		},
+		template:'<div>{{rate}}<button @click="add">+</button></div>',
+		methods:{
+			add:function(){
+				this.rate+=5;
+				this.$emit("addup",5);
+			}
+		}
+	})
+
+	var app=new Vue({
+		el:'#app',
+		data:{
+			total:40
+		},
+		methods:{
+			totalnum:function(n){
+				this.total+=n;
+			}
+		}
+	})
+</script> 
+</html>

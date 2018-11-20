@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算属性 方法 与 监听器</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div>{{person1}}</div>
+		<div>{{person()}}</div>
+		<div>{{persionJson}}</div>
+		<div>{{cmptdGetSet}}</div>
+	</div>
+</body>
+<script>
+	var app=new Vue({
+		el:'#app',
+		data:{
+			name:"小凶许",
+			age:'18',
+			year:'3',
+			persionJson:'hello computed'
+		},
+		watch:{
+			name:function(){
+				console.log("name监听")
+				this.persionJson= `我叫${this.name} 我今年${this.age}岁 我三年后${Number(this.age)+Number(this.year)}岁`;
+			}
+		},
+		methods:{
+			person:function(){
+				console.log("计算方法")
+				return `我叫${this.name} 我今年${this.age}岁 我三年后${Number(this.age)+Number(this.year)}岁`;
+			}
+		},
+		computed:{
+			person1:function(){
+				console.log(Number(this.age))
+				return `我叫${this.name} 我今年${this.age}岁 我三年后${Number(this.age)+Number(this.year)}岁`;
+			},
+			cmptdGetSet:{
+				get:function(){
+					return this.name+this.age;
+				},
+				set:function(value){
+					let o=value.split("-");
+					this.name=o[0];
+				}
+			}
+		}
+	})
+</script> 
+</html>

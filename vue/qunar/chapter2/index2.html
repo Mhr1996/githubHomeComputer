@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<input type="text" v-model="message"><button v-on:click="submit">提交</button>
+		<ul>
+			<!-- <li v-for="l in list">{{l}}</li> -->
+			<todolist v-bind:getlitem="l"  v-bind:index="index" v-for="(l,index) in list" :key="index" v-on:del="delItem"></todolist>
+		</ul>
+	</div>
+</body>
+<script>
+	/*Vue.component("todolist",{
+		props:['getlitem'],
+		template:"<li>{{ getlitem }}</li>"
+	})*/
+
+	var todolist={
+		props:['getlitem','index'],
+		template:'<li @click="del">{{ getlitem }}</li>',
+		methods:{
+			del:function(){
+				this.$emit('del',this.index);
+			}
+		}
+	}
+
+	var app=new Vue({
+		el:'#app',
+		components:{
+			todolist:todolist
+		},
+		data:{
+			text:'hello world',
+			message:'',
+			list:[
+				"我是列表1",
+				"我是列表2",
+				"我是列表3"
+			]
+		},
+		methods:{
+			submit:function(){
+				this.list=[...this.list,this.message];
+				this.message="";
+				console.log(this.list)
+			},
+			delItem:function(i){
+				this.list.splice(i,1);
+			}
+		}
+	})
+</script> 
+</html>

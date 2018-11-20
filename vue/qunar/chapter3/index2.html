@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		{{num+5}}
+		<div v-text="num==='4'?'等于':'不等于'"></div>
+		<div v-html="num + 5"></div>
+	</div>
+</body>
+<script>
+	var app=new Vue({
+		el:'#app',
+		data:{
+			num:'4'
+		}
+	})
+</script> 
+</html>

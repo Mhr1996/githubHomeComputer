@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<item :age="22"></item>
+		<item :age="63"></item>
+	</div>
+</body>
+<script>
+	Vue.prototype.bus=new Vue();
+
+	Vue.component('item',{
+		data:function(){
+			return {
+				ageNew:this.age	
+			}
+		},
+		props:{
+			age:Number
+		},
+		template:'<div @click="handClick">{{ageNew}}</div>',
+		methods:{
+			handClick:function(){
+				console.log("go")
+				this.bus.$emit('change',this.ageNew);
+			}
+		},
+		mounted:function(){
+			this.bus.$on("change",(iOk)=>{
+				this.ageNew=iOk;
+			})
+		}
+	});
+
+	var app=new Vue({
+		el:"#app",
+		data:{
+			name:'小明'
+		}
+	});
+</script>
+</html>

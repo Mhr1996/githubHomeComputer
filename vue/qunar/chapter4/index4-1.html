@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<count ref="one" @change="changeParent"></count>
+		<count ref="two" @change="changeParent"></count>
+		合计：{{total}}
+	</div>
+</body>
+<script>
+	Vue.component('count',{
+		data:function(){
+			return {
+				num:1
+			}
+		},
+		methods:{
+			add:function(){
+				++this.num;
+				this.$emit("change");
+			}
+		},
+		template:'<div @click="add">{{num}}</div>'
+	})
+	var app=new Vue({
+		el:'#app',
+		data:{
+			total:0
+		},
+		methods:{
+			changeParent:function(){
+				this.total=this.$refs.one.num+this.$refs.two.num;
+			}
+		}
+	})
+</script> 
+</html>

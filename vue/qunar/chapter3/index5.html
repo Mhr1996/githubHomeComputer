@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue中的样式绑定</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div v-bind:style="appdiv">{{name}}</div>
+	</div>
+</body>
+<script>
+	var app=new Vue({
+		el:'#app',
+		data:{
+			name:"hello world",
+			statys:true,
+			appdiv:{
+				backgroundColor: this.statys?'red':'none'
+			}
+		}
+	})
+</script> 
+</html>

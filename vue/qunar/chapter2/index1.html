@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+	<div id="app">{{text}}</div>
+</body>
+<script>
+	var app=new Vue({
+		el:'#app',
+		data:{
+			text:'hello world'
+		}
+	})
+	setTimeout(function(){
+		app.$data.text="HI 大神";
+	},1000)
+</script> 
+</html>
