@@ -187,7 +187,7 @@ var tool={
             });
         });
     },
-    Pastdate:function(){
+    Pastdate:function(type,time){
     	/*
 			ct=current time  当前时间
 			cy=current year  当前年份

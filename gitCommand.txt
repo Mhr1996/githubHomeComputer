@@ -2,6 +2,7 @@
 
 第二步：使用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支上。
 
+git remote -v 查看所关联的远程库
 git add 文件名 提交到本地暂存区
 git diff 文件名 查看更新了什么
 git commit -m '备注' 实际上就是把暂存区的所有内容提交到当前分支
@@ -24,3 +25,7 @@ git push -u origin master
 
 git pull -u origin master
 这里的master是我的分支的名称，在使用的时候要换成你自己分支的名称；也可直接 git pull 更新默认分支
+
+git checkout 分支名 切换分支
+git branch 查看当前分支 带*
+git merge origin/xxname 合并分支
