@@ -1,6 +1,4 @@
 var tool={
-	p:1,
-	pn:0,
 	getUrlStringId: function (name) {//用法 tool.getUrlStringId("地址栏参数名");
 		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
 		var r = window.location.search.substr(1).match(reg);
@@ -51,51 +49,43 @@ var tool={
 	            break;
 	        case ("2")://手机号
 	        	var re=/^1[0-9]{10}$/;
-	        	if (!re.test(code)) {layer.open({content: "手机号格式不正确",skin: 'msg',time: 2 });statusver=false;}
+	        	if (!re.test(code)) {layer.msg("手机号格式不正确");statusver=false;}
 	            break;
 	        case ("3")://车牌
 	        	var re=/^[\u4e00-\u9fa5]{1}[A-Z]{1}[A-Z_0-9]{5}$/;
-	        	if (!re.test(code)) {layer.open({content: "车牌号格式不正确",skin: 'msg',time: 2 });statusver=false;}
+	        	if (!re.test(code)) {layer.msg("车牌号格式不正确");statusver=false;}
 	            break;
 	        case ("4")://数字
-	        	if (isNaN(code)) {layer.open({content: "格式为数字格式",skin: 'msg',time: 2 });statusver=false;}
+	        	if (isNaN(code)) {layer.msg("格式为数字格式");statusver=false;}
 	            break;
 	        case ("5")://姓名
 	        	var re=/^[\u4e00-\u9fa5]{2,4}$/;
-	        	if (!re.test(code)) {layer.open({content: "姓名格式不正确",skin: 'msg',time: 2 });statusver=false;}
+	        	if (!re.test(code)) {layer.msg("姓名格式不正确");statusver=false;}
 	            break;
 	        case ("6")://邮箱
 	        	var re=/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
-	        	if (!re.test(code)) {layer.open({content: "邮箱格式不正确",skin: 'msg',time: 2 });statusver=false;}
+	        	if (!re.test(code)) {layer.msg("邮箱格式不正确");statusver=false;}
 	            break;
 	        case("7"):
 	        	var rePhone = /^(0[0-9]{2,3}[-]{0,1})?[0-9]{7,8}$/;
 	        	var reTel=/^1[0-9]{10}$/;
-	        	if (!reTel.test(code)&&!rePhone.test(code)) {layer.open({content: "电话号码格式不正确",skin: 'msg',time: 2 });statusver=false;}
-	            break;
-	        case("8"):
-	        	var chinese = /[^\u4e00-\u9fa5]/;
-	        	if (!chinese.test(code)) {layer.open({content: "请输入非中文字符",skin: 'msg',time: 2 });statusver=false;}
-	            break;
-	        case("9"):
-	        	var character = /[\\/'"]/;
-	        	if (character.test(code)||code=="") {layer.open({content: "不能为空，不能添加特殊字符",skin: 'msg',time: 2 });statusver=false;}
+	        	if (!reTel.test(code)&&!rePhone.test(code)) {layer.msg("电话号码格式不正确");statusver=false;}
 	            break;
 	        case ("101")://文本框可以为空，不为空时验证手机号
 	        	var re=/^1[0-9]{10}$/;
 	        	if (code!="") {
-	        		if (!re.test(code)) {layer.open({content: "手机号格式不正确",skin: 'msg',time: 2 });statusver=false;}
+	        		if (!re.test(code)) {layer.msg("手机号格式不正确");statusver=false;}
 	        	}
 	            break;
 	        case ("102")://文本框可以为空，不为空时验证电话号码
 	        	var rePhone = /^(0[0-9]{2,3}[-]{0,1})?[0-9]{7,8}$/;
 	        	var reTel=/^1[0-9]{10}$/;
 	        	if (code!="") {
-	        		if (!reTel.test(code)&&!rePhone.test(code)) {layer.open({content: "电话号码格式不正确",skin: 'msg',time: 2 });statusver=false;}
+	        		if (!reTel.test(code)&&!rePhone.test(code)) {layer.msg("电话号码格式不正确");statusver=false;}
 	        	}
 	            break;
 	        default://为空
-	        	if(!code){layer.open({content: "姓名格式不正确",skin: 'msg',time: 2 });layer.open({content: $parameter.attr("FvInfo"),skin: 'msg',time: 2 });statusver=false;};
+	        	if(!code){layer.msg($parameter.attr("FvInfo"));statusver=false;};
 	    }
 	    !statusver ? $parameter.focus() : "";
 	    return statusver;
@@ -111,20 +101,30 @@ var tool={
 		}
 		return zhen;
 	},
-	date:function(date,ymd) {
+	formatDate:function(date,ymd) {
 		if(date==""||date==null){return ""; }
 		date=new Date(date);
-		var year = date.getFullYear();
-		var month = date.getMonth() + 1;
-		var day = date.getDate();
-		var hour = date.getHours();             
-		var minute = date.getMinutes();
-		var second = date.getSeconds();
-		if (10 > month) {month = "0" + month; }
-		if (10 > day) {day = "0" + day; }
-		if (10 > hour) {hour = "0" + hour; }
-		if (10 > minute) {minute = "0" + minute; }
-		if (10 > second) {second = "0" + second; }
+		var year = date.getFullYear()
+		,month = date.getMonth() + 1
+		,day = date.getDate()
+		,hour = date.getHours()
+		,minute = date.getMinutes()
+		,second = date.getSeconds();
+		if (10 > month) {
+			month = "0" + month;
+		}
+		if (10 > day) {
+			day = "0" + day;
+		}
+		if (10 > hour) {
+			hour = "0" + hour;
+		}
+		if (10 > minute) {
+			minute = "0" + minute;
+		}
+		if (10 > second) {
+			second = "0" + second;
+		}
 		if(ymd=="ss"){
 			return year + "-" + month + "-" + day+ " " + hour+ ":" + minute + ":" + second;
 		}else if(ymd) {
@@ -134,32 +134,16 @@ var tool={
 		}
 	},
 	officeClerk:function(title,url,w,h){
-		if (w==undefined&&h==undefined) {
-			var webPlatfrom = layer.open({
-				type: 2,
-				title: title,
-				content: url,
-			});
-			layer.full(webPlatfrom);
-			return;
-		}else{
-			layer_show(title,url,w,h);	
-		}
+		layer_show(title,url,w,h);
 	},
 	retainDecimal:function(num){//保留3位小数，没有小数则返回原本数值
 		if (num==""||num==null) {num=0}
 		var ex = /^\d+$/;
 		return !ex.test(Number(num)) ?Number(num).toFixed(2)*1000/1000:num;
 	},
-	Msg:function(content){
-		layer.open({
-	        content: content
-	       	,skin: 'msg'
-	        ,time: 3
-        });
-	},
 	returnBack:function(d,s){
 		for(var D in d){
+			if(!D){D="";}
 			if (s!==undefined&&s.length>0) {
 				for (var i = 0; i < s.length; i++) {
 					if(D==s[i]){
@@ -171,10 +155,14 @@ var tool={
 			}else{
 				$("input[name="+D+"]").val(d[D]);
 			}
-			
 		}
 	},
 	asyncFalse:function(url ,data ,success_ ){//mobile 接口 参数 
+		/*tool.asyncFalse("../task/modifyStatus.do",data,function(r,getLayer){
+	        layer.open({content:lcon ,skin: 'msg',time: 2});
+	        setTimeout(function(){location.reload();}, 1000);
+	    });*/
+		
         var dtd = $.Deferred(),layerLoad=null; // 新建一个deferred对象
 
         var wait = function(dtd){
@@ -198,6 +186,33 @@ var tool={
                 layer.open({content:url+"接口错误",skin: 'msg',time: 2});
             });
         });
+    },
+    Pastdate:function(){
+    	/*
+			ct=current time  当前时间
+			cy=current year  当前年份
+			cm=current month 当前月份
+			st=storage		 存储字段
+		 */
+		time=parseInt(time);
+		time=time>0&&!isNaN(time)?time:1;
+
+		var day=null ,ct=new Date() ,cy=ct.getFullYear() ,cm=ct.getMonth() ,st=null;
+
+		switch(type){
+			case 0:
+				day=ct.getTime()-(24*60*60*1000*time);
+			break;
+			case 1:
+				storage=(new Date(cy,cm-time+1,1).getTime()-new Date(cy,cm-time,1).getTime())/(24*60*60*1000);
+				day=new Date(cy,cm-time,storage).getTime();
+			break;
+		}
+
+		return {
+			oDate:day,
+			cDate:ct.getTime()
+		}
     }
 }
 
