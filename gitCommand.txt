@@ -29,3 +29,12 @@ git pull -u origin master
 git checkout 分支名 切换分支
 git branch 查看当前分支 带*
 git merge origin/xxname 合并分支
+
+
+把现有的项目提交到github
+git init
+新建一个github项目后执行
+git remote add origin git@github.com:Mhr1996/zhuangzi.git
+git add .
+git commit -m '内容'
+git push -u origin master
